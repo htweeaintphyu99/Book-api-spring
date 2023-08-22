@@ -41,8 +41,8 @@ public class BookMapperImpl implements BookMapper {
 			return null;
 		}
 		BookDto bookDto = new BookDto();
-		bookDto.setId(book.getId());
-		bookDto.setName(book.getName());
+		bookDto.setId(book.getBookId());
+		bookDto.setName(book.getBookName());
 		bookDto.setCategories(categoryMapper.toDto(book.getCategories()));
 		bookDto.setAuthors(authorMapper.toDto(book.getAuthors()));
 		return bookDto;

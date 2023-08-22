@@ -50,7 +50,7 @@ public class BookController {
 
 		return bookMapper.toResponse(bookDto);
 	}
-	
+
 	@GetMapping("/books-containing-{bookName}")
 	public List<BookResponse> getBooksByNameContaining(@PathVariable String bookName) {
 		List<BookDto> books = bookService.getBooksByNameContaining(bookName);
@@ -58,7 +58,7 @@ public class BookController {
 				.collect(Collectors.toList());
 		return bookResponse;
 	}
-	
+
 	@PostMapping
 	public BookResponse createBook(@RequestBody BookRequest request) {
 		BookDto bookDto = bookMapper.toDto(request);
@@ -70,10 +70,8 @@ public class BookController {
 	public BookResponse updateBook(@RequestBody BookRequest request, @PathVariable Long bookId) {
 		BookDto bookDto = bookMapper.toDto(request);
 		BookDto saveBook = bookService.updateBook(bookDto, bookId);
-		return bookMapper.toResponse(bookDto);
+		return bookMapper.toResponse(saveBook);
 	}
-	
-
 
 	@DeleteMapping("/{bookId}")
 	public BookResponse deleteBook(@PathVariable Long bookId) {

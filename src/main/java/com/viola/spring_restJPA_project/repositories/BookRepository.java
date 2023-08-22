@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.viola.spring_restJPA_project.models.entities.Book;
 
 public interface BookRepository extends JpaRepository<Book, Long>{
-	public List<Book> findByNameContaining(String name);
+	public List<Book> findByBookNameContaining(String bookName);
 }

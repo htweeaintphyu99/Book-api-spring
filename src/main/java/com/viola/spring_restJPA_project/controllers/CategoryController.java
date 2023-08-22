@@ -55,14 +55,14 @@ public class CategoryController {
 		CategoryDto categoryDto = categoryMapper.toDto(request);
 		CategoryDto savedCategory = categoryService.saveCategory(categoryDto);
 		return categoryMapper.toResponse(savedCategory);
-		
 	}
-	
+
 	@PutMapping("/{categoryId}")
 	public CategoryResponse updateCategory(@RequestBody CategoryRequest request, @PathVariable Long categoryId) {
 		CategoryDto categoryDto = categoryMapper.toDto(request);
 		CategoryDto savedCategory = categoryService.updateCategory(categoryDto, categoryId);
 		return categoryMapper.toResponse(savedCategory);
+//		System.out.println("In put mapping");
 	}
 
 	@DeleteMapping("/{categoryId}")

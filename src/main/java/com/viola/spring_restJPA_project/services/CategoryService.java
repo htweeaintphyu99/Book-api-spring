@@ -49,14 +49,14 @@ public class CategoryService {
 	}
 
 	public CategoryDto updateCategory(CategoryDto categoryDto, Long categoryId) {
-		Category category = categoryRepository.findById(categoryId).get();
-		if (category != null) {
-			category.setCategoryName(categoryDto.getName());
-			Category savedcategory = categoryRepository.save(category);
-			return categoryMapper.toDto(savedcategory);
-
+		Category category = categoryRepository.findById(categoryId).orElse(null);
+		if (category == null) {
+			return null;
 		}
-		return null;
+		category.setCategoryName(categoryDto.getName());
+		Category savedcategory = categoryRepository.save(category);
+		return categoryMapper.toDto(savedcategory);
 
 	}
+	
 }

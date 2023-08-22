@@ -1,7 +1,7 @@
 package com.viola.spring_restJPA_project.models.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +17,7 @@ public class Category {
 	private Long categoryId;
 	private String categoryName;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="id")
 	private Book book;
 	

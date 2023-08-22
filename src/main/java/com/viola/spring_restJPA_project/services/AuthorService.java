@@ -29,7 +29,7 @@ public class AuthorService {
 	public AuthorDto saveAuthor(AuthorDto authorDto) {
 		Author author = new Author();
 		author.setAuthorName(authorDto.getName());
-		author.setAuthorEmail(author.getAuthorEmail());
+		author.setAuthorEmail(authorDto.getEmail());
 		Author savedAuthor = authorRepository.save(author);
 		return authorMapper.toDto(savedAuthor);
 	}

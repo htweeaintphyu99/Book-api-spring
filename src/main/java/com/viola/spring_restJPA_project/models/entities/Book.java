@@ -3,7 +3,6 @@ package com.viola.spring_restJPA_project.models.entities;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,17 +20,16 @@ public class Book {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long bookId;
 
-	@Column(name = "name")
-	private String name;
+	private String bookName;
 
 	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH,
 			CascadeType.PERSIST }, fetch = FetchType.LAZY)
-	@JoinTable(name = "book_author_map", joinColumns = @JoinColumn(name = "id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "authorId"))
+	@JoinTable(name = "books_authors", joinColumns = @JoinColumn(name = "bookId", referencedColumnName = "bookId"), inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "authorId"))
 	private List<Author> authors;
 
-	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
 	private List<Category> categories;
 
 	public void removeAuthor(Author author) {
@@ -54,20 +52,20 @@ public class Book {
 		this.categories = categories;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getBookId() {
+		return bookId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setBookId(Long bookId) {
+		this.bookId = bookId;
 	}
 
-	public String getName() {
-		return name;
+	public String getBookName() {
+		return bookName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
 	}
 
 }
